@@ -247,7 +247,7 @@ function tansParams(params) {
 }
 
 async function queryRefreshToken(config, refreshToken) {
-  const result = await request.refresh('auth/oauth/token', {
+  const result = await request.refresh('/oauth/token', {
     refresh_token: refreshToken
   })
   if (result.status === success) {

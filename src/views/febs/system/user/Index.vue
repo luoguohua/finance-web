@@ -209,7 +209,7 @@ export default {
       this.search()
     },
     exportExcel() {
-      this.$download('system/user/excel', {
+      this.$download('user/excel', {
         pageSize: this.pagination.size,
         pageNum: this.pagination.num,
         ...this.queryParams
@@ -236,7 +236,7 @@ export default {
         this.selection.forEach((u) => {
           userNames.push(u.username)
         })
-        this.$put('system/user/password/reset', {
+        this.$put('user/password/reset', {
           usernames: userNames.join(',')
         }).then(() => {
           this.$message({
@@ -293,7 +293,7 @@ export default {
     },
     delete(userIds) {
       this.loading = true
-      this.$delete(`system/user/${userIds}`).then(() => {
+      this.$delete(`user/${userIds}`).then(() => {
         this.$message({
           message: this.$t('tips.deleteSuccess'),
           type: 'success'
@@ -311,7 +311,7 @@ export default {
         roleId = row.roleId.split(',')
         row.roleId = roleId
       }
-      this.$get(`system/user/${row.userId}`).then((r) => {
+      this.$get(`user/${row.userId}`).then((r) => {
         row.deptIds = r.data.data
         this.$refs.edit.setUser(row)
         this.dialog.title = this.$t('common.edit')
@@ -326,7 +326,7 @@ export default {
         params.createTimeTo = this.queryParams.timeRange[1]
       }
       this.loading = true
-      this.$get('system/user', {
+      this.$get('user', {
         ...params
       }).then((r) => {
         const data = r.data.data

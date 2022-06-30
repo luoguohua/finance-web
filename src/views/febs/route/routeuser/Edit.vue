@@ -67,7 +67,7 @@ export default {
           { min: 4, max: 10, message: this.$t('rules.range4to10'), trigger: 'blur' },
           { validator: (rule, value, callback) => {
             if (!this.user.id) {
-              r.get(`route/auth/user/${value}`).then((r) => {
+              r.get(`route/user/${value}`).then((r) => {
                 if (r.data) {
                   callback(this.$t('rules.usernameExist'))
                 } else {
@@ -129,7 +129,7 @@ export default {
           this.buttonLoading = true
           if (!this.user.id) {
             // create
-            r.post('route/auth/user', { ...this.user }).then(() => {
+            r.post('route/user', { ...this.user }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({
@@ -142,7 +142,7 @@ export default {
             })
           } else {
             // update
-            r.put('route/auth/user', { ...this.user }).then(() => {
+            r.put('route/user', { ...this.user }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({

@@ -113,7 +113,7 @@ export default {
           { min: 4, max: 10, message: this.$t('rules.range4to10'), trigger: 'blur' },
           { validator: (rule, value, callback) => {
             if (!this.user.userId) {
-              this.$get(`system/user/check/${value}`).then((r) => {
+              this.$get(`user/check/${value}`).then((r) => {
                 if (!r.data) {
                   callback(this.$t('rules.usernameExist'))
                 } else {
@@ -186,7 +186,7 @@ export default {
       }
     },
     initDept() {
-      this.$get('system/dept').then((r) => {
+      this.$get('dept').then((r) => {
         this.depts = r.data.data.rows
         this.deptTree = this.depts
       }).catch((error) => {
@@ -201,7 +201,7 @@ export default {
       this.$refs.deptTree.setCheckedKeys([])
     },
     initRoles() {
-      this.$get('system/role/options').then((r) => {
+      this.$get('role/options').then((r) => {
         this.roles = r.data.data
       }).catch((error) => {
         console.error(error)
@@ -226,7 +226,7 @@ export default {
           this.user.deptIds = this.$refs.deptTree.getCheckedKeys()
           if (!this.user.userId) {
             // create
-            this.$post('system/user', { ...this.user }).then(() => {
+            this.$post('user', { ...this.user }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({
@@ -238,7 +238,7 @@ export default {
           } else {
             // update
             this.user.createTime = this.user.modifyTime = this.user.lastLoginTime = null
-            this.$put('system/user', { ...this.user }).then(() => {
+            this.$put('user', { ...this.user }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({

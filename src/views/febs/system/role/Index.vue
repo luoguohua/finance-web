@@ -133,7 +133,7 @@ export default {
           { min: 3, max: 10, message: this.$t('rules.range3to10'), trigger: 'blur' },
           { validator: (rule, value, callback) => {
             if (!this.role.roleId) {
-              this.$get(`system/role/check/${value}`).then((r) => {
+              this.$get(`role/check/${value}`).then((r) => {
                 if (!r.data) {
                   callback(this.$t('rules.roleNameExist'))
                 } else {
@@ -162,7 +162,7 @@ export default {
       }
     },
     initMenuTree() {
-      this.$get('system/menu').then((r) => {
+      this.$get('menu').then((r) => {
         this.permsTree = r.data.data.rows
       })
     },
@@ -173,7 +173,7 @@ export default {
       this.$refs.table.clearSelection()
     },
     exportExcel() {
-      this.$download('system/role/excel', {
+      this.$download('role/excel', {
         pageSize: this.pagination.size,
         pageNum: this.pagination.num,
         ...this.queryParams
@@ -216,7 +216,7 @@ export default {
     },
     delete(roleIds) {
       this.loading = true
-      this.$delete(`system/role/${roleIds}`).then(() => {
+      this.$delete(`role/${roleIds}`).then(() => {
         this.$message({
           message: this.$t('tips.deleteSuccess'),
           type: 'success'
@@ -231,7 +231,7 @@ export default {
           if (this.role.roleId) {
             this.role.menuIds = this.$refs.permsTree.getCheckedKeys().join(',')
             this.role.createTime = this.role.modifyTime = null
-            this.$put('system/role', { ...this.role }).then(() => {
+            this.$put('role', { ...this.role }).then(() => {
               this.buttonLoading = false
               this.$message({
                 message: this.$t('tips.updateSuccess'),
@@ -241,7 +241,7 @@ export default {
             })
           } else {
             this.role.menuIds = this.$refs.permsTree.getCheckedKeys().join(',')
-            this.$post('system/role', { ...this.role }).then(() => {
+            this.$post('role', { ...this.role }).then(() => {
               this.buttonLoading = false
               this.$message({
                 message: this.$t('tips.createSuccess'),
@@ -291,7 +291,7 @@ export default {
       this.loading = true
       params.pageSize = this.pagination.size
       params.pageNum = this.pagination.num
-      this.$get('system/role', { ...params }).then((r) => {
+      this.$get('role', { ...params }).then((r) => {
         const data = r.data.data
         this.list = data.rows
         this.total = data.total

@@ -100,7 +100,7 @@ export default {
           { required: true, message: this.$t('rules.require'), trigger: '[change, blur]' },
           { validator: (rule, value, callback) => {
             if (!this.blackList.id && this.blackList.requestMethod && this.blackList.requestUri) {
-              r.get('route/auth/blackList/exist', {
+              r.get('route/blackList/exist', {
                 ip: this.blackList.ip,
                 requestUri: this.blackList.requestUri,
                 requestMethod: this.blackList.requestMethod
@@ -172,7 +172,7 @@ export default {
           this.buttonLoading = true
           if (!this.blackList.id) {
             // create
-            r.post('route/auth/blackList', { ...this.blackList }).then(() => {
+            r.post('route/blackList', { ...this.blackList }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({
@@ -185,7 +185,7 @@ export default {
             })
           } else {
             // update
-            r.put('route/auth/blackList', { ...this.blackList }).then(() => {
+            r.put('route/blackList', { ...this.blackList }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({

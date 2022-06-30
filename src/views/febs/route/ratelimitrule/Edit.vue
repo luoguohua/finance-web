@@ -104,7 +104,7 @@ export default {
           { required: true, message: this.$t('rules.require'), trigger: '[change, blur]' },
           { validator: (rule, value, callback) => {
             if (!this.rateLimitRule.id && this.rateLimitRule.requestMethod && this.rateLimitRule.requestUri) {
-              r.get('route/auth/rateLimitRule/exist', {
+              r.get('route/rateLimitRule/exist', {
                 requestUri: this.rateLimitRule.requestUri,
                 requestMethod: this.rateLimitRule.requestMethod
               }).then((r) => {
@@ -196,7 +196,7 @@ export default {
           this.buttonLoading = true
           if (!this.rateLimitRule.id) {
             // create
-            r.post('route/auth/rateLimitRule', { ...this.rateLimitRule }).then(() => {
+            r.post('route/rateLimitRule', { ...this.rateLimitRule }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({
@@ -209,7 +209,7 @@ export default {
             })
           } else {
             // update
-            r.put('route/auth/rateLimitRule', { ...this.rateLimitRule }).then(() => {
+            r.put('route/rateLimitRule', { ...this.rateLimitRule }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({

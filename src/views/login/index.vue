@@ -162,7 +162,7 @@ export default {
     return {
       curYear: 0,
       tabActiveName: 'bindLogin',
-      codeUrl: `${process.env.VUE_APP_BASE_API}auth/captcha`,
+      codeUrl: `${process.env.VUE_APP_BASE_API}captcha`,
       socialLoginUrl: socialLoginUrl,
       login: {
         type: 'up'
@@ -255,7 +255,7 @@ export default {
       return require(`@/assets/logo/${logo}`)
     },
     socialLogin(oauthType) {
-      const url = `${this.socialLoginUrl}/${oauthType}/login`
+      const url = `${this.socialLoginUrl}/login`
       window.open(url, 'newWindow', `resizable=yes, height=${this.page.height}, width=${this.page.width}, top=10%, left=10%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no`)
       window.addEventListener('message', this.resolveSocialLogin, false)
     },
@@ -278,7 +278,6 @@ export default {
       } else if (data.message === 'social_login_success') {
         that.saveLoginData(data.data)
         that.getUserDetailInfo()
-        that.loginSuccessCallback()
       } else {
         // do nothing
       }
@@ -297,11 +296,10 @@ export default {
           ...that.authUser
         }
         params.token = null
-        that.$post('auth/social/bind/login', params).then((r) => {
+        that.$post('/social/bind/login', params).then((r) => {
           const data = r.data.data
           this.saveLoginData(data)
           this.getUserDetailInfo()
-          this.loginSuccessCallback()
         }).catch((error) => {
           console.error(error)
           that.loading = false
@@ -322,11 +320,10 @@ export default {
           ...that.authUser
         }
         params.token = null
-        that.$post('auth/social/sign/login', params).then((r) => {
+        that.$post('/social/sign/login', params).then((r) => {
           const data = r.data.data
           this.saveLoginData(data)
           this.getUserDetailInfo()
-          this.loginSuccessCallback()
         }).catch((error) => {
           console.error(error)
           that.loading = false
@@ -343,14 +340,13 @@ export default {
       if (username_c && password_c && code_c) {
         this.loading = true
         const that = this
-        this.$login('auth/oauth/token', {
+        this.$login('/oauth/token', {
           ...that.loginForm,
           key: this.randomId
         }).then((r) => {
           const data = r.data
           this.saveLoginData(data)
           this.getUserDetailInfo()
-          this.loginSuccessCallback()
         }).catch((error) => {
           console.error(error)
           that.loading = false
@@ -366,7 +362,7 @@ export default {
       this.$store.commit('account/setExpireTime', expireTime)
     },
     getUserDetailInfo() {
-      this.$get('auth/user').then((r) => {
+      this.$get('/current-user').then((r) => {
         this.$store.commit('account/setUser', r.data.principal)
         this.$message({
           message: this.$t('tips.loginSuccess'),
@@ -382,9 +378,6 @@ export default {
         console.error(error)
         this.loading = false
       })
-    },
-    loginSuccessCallback() {
-      this.$get('system/user/success').catch((e) => { console.log(e) })
     }
   }
 }

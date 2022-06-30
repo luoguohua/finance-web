@@ -31,7 +31,7 @@ export default {
   methods: {
     getTimeLine() {
       this.finished = false
-      this.$get('system/loginLog/currentUser').then((r) => {
+      this.$get('loginLog/currentUser').then((r) => {
         this.timeline = r.data.data
         this.finished = true
       })

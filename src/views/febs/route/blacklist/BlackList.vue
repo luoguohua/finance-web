@@ -210,7 +210,7 @@ export default {
     },
     delete(blackListIds) {
       this.loading = true
-      r.delete('route/auth/blackList', { ids: blackListIds }).then(() => {
+      r.delete('route/blackList', { ids: blackListIds }).then(() => {
         this.$message({
           message: this.$t('tips.deleteSuccess'),
           type: 'success'
@@ -246,8 +246,8 @@ export default {
       params.pageNum = this.pagination.num - 1
       this.loading = true
       axios.all([
-        r.get('route/auth/blackList/data', { ...params }),
-        r.get('route/auth/blackList/count', { ...params })
+        r.get('route/blackList/data', { ...params }),
+        r.get('route/blackList/count', { ...params })
       ]).then(v => {
         this.total = v[1].data
         this.list = v[0].data

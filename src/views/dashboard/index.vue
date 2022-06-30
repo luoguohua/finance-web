@@ -202,7 +202,7 @@ export default {
       return `${time}, ${this.user.username}, ${welcomeArr[index]}`
     },
     initIndexData: function() {
-      this.$get('system/user/index').then((r) => {
+      this.$get('user/index').then((r) => {
         const data = r.data.data
         this.todayIp = data.todayIp
         this.totalVisit = data.totalVisitCount

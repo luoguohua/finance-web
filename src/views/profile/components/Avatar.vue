@@ -106,7 +106,7 @@ export default {
         return
       }
       this.updating = true
-      this.$put('system/user/avatar', { avatar }).then(() => {
+      this.$put('user/avatar', { avatar }).then(() => {
         this.$emit('success', avatar)
         this.updating = false
       }).catch((r) => {

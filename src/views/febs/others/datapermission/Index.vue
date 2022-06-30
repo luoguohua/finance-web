@@ -73,7 +73,7 @@ export default {
       this.loading = true
       params.pageSize = this.pagination.size
       params.pageNum = this.pagination.num
-      this.$get('system/dataPermissionTest/list', { ...params }).then((r) => {
+      this.$get('dataPermissionTest/list', { ...params }).then((r) => {
         const data = r.data.data
         this.total = data.total
         this.list = data.rows

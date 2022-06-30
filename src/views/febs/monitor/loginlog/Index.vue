@@ -109,7 +109,7 @@ export default {
       this.selection = selection
     },
     exportExcel() {
-      this.$download('system/loginLog/excel', {
+      this.$download('loginLog/excel', {
         pageSize: this.pagination.size,
         pageNum: this.pagination.num,
         ...this.queryParams
@@ -123,7 +123,7 @@ export default {
         params.loginTimeTo = this.queryParams.timeRange[1]
       }
       this.loading = true
-      this.$get('system/loginLog', {
+      this.$get('loginLog', {
         ...params
       }).then((r) => {
         const data = r.data.data
@@ -163,7 +163,7 @@ export default {
     },
     delete(logIds) {
       this.loading = true
-      this.$delete(`system/loginLog/${logIds}`).then(() => {
+      this.$delete(`loginLog/${logIds}`).then(() => {
         this.$message({
           message: this.$t('tips.deleteSuccess'),
           type: 'success'

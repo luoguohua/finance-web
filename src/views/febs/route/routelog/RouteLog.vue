@@ -164,7 +164,7 @@ export default {
     },
     delete(logIds) {
       this.loading = true
-      r.delete('route/auth/log', { ids: logIds }).then(() => {
+      r.delete('route/log', { ids: logIds }).then(() => {
         this.$message({
           message: this.$t('tips.deleteSuccess'),
           type: 'success'
@@ -204,8 +204,8 @@ export default {
       }
       this.loading = true
       axios.all([
-        r.get('route/auth/log/data', { ...params }),
-        r.get('route/auth/log/count', { ...params })
+        r.get('route/log/data', { ...params }),
+        r.get('route/log/count', { ...params })
       ]).then(v => {
         this.total = v[1].data
         this.list = v[0].data

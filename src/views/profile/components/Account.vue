@@ -80,7 +80,7 @@ export default {
           this.buttonLoading = true
           const temp = { ...this.user }
           temp.lastLoginTime = temp.modifyTime = temp.createTime = null
-          this.$put('system/user/profile', { ...temp }).then(() => {
+          this.$put('user/profile', { ...temp }).then(() => {
             this.buttonLoading = false
             this.$message({
               message: this.$t('tips.updateSuccess'),
@@ -101,7 +101,7 @@ export default {
       this.change = true
     },
     initDept() {
-      this.$get('system/dept').then((r) => {
+      this.$get('dept').then((r) => {
         this.depts = r.data.data.rows
       }).catch((error) => {
         console.error(error)

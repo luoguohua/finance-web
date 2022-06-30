@@ -1,9 +1,9 @@
 module.exports = {
   title: 'FEBS Cloud',
   // 获取令牌时，请求头信息(Basic Base64.encode(client_id:client_secret))
-  authorizationValue: 'Basic ZmViczoxMjM0NTY=',
+  authorizationValue: 'Basic ZmluYW5jZToxMjM0NTY=',
   // 社交登录后台地址
-  socialLoginUrl: 'http://localhost:8301/auth/social/login',
+  socialLoginUrl: 'http://localhost:8301/social/login',
   // 请替换为您的实际地址
   pages: {
     // FEBS-Admin 控制台地址

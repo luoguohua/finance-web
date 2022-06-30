@@ -76,7 +76,7 @@ export default {
   components: { Pagination, Result },
   data() {
     return {
-      uploadAction: `${process.env.VUE_APP_BASE_API}system/eximport/import`,
+      uploadAction: `${process.env.VUE_APP_BASE_API}eximport/import`,
       dialogVisible: false,
       tableKey: 0,
       loading: false,
@@ -103,10 +103,10 @@ export default {
       this.dialogVisible = false
     },
     templateDownload() {
-      this.$download('system/eximport/template', {}, 'excel_import_template.xlsx')
+      this.$download('eximport/template', {}, 'excel_import_template.xlsx')
     },
     exportExcel() {
-      this.$download('system/eximport/excel', {
+      this.$download('eximport/excel', {
         pageSize: this.pagination.size,
         pageNum: this.pagination.num
       }, `export_${new Date().getTime()}.xlsx`)
@@ -146,7 +146,7 @@ export default {
       this.loading = true
       params.pageSize = this.pagination.size
       params.pageNum = this.pagination.num
-      this.$get('system/eximport', { ...params }).then((r) => {
+      this.$get('eximport', { ...params }).then((r) => {
         const data = r.data.data
         this.total = data.total
         this.list = data.rows

@@ -152,7 +152,7 @@ export default {
     },
     delete(userIds) {
       this.loading = true
-      r.delete('route/auth/user', { ids: userIds }).then(() => {
+      r.delete('route/user', { ids: userIds }).then(() => {
         this.$message({
           message: this.$t('tips.deleteSuccess'),
           type: 'success'
@@ -188,8 +188,8 @@ export default {
       params.pageNum = this.pagination.num - 1
       this.loading = true
       axios.all([
-        r.get('route/auth/user/data', { ...params }),
-        r.get('route/auth/user/count', { ...params })
+        r.get('route/user/data', { ...params }),
+        r.get('route/user/count', { ...params })
       ]).then(v => {
         this.total = v[1].data
         this.list = v[0].data

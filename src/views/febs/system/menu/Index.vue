@@ -136,7 +136,7 @@ export default {
   methods: {
     initMenuTree() {
       this.finished = false
-      this.$get('system/menu').then((r) => {
+      this.$get('menu').then((r) => {
         this.menuTree = r.data.data.rows
         this.finished = true
       })
@@ -155,7 +155,7 @@ export default {
       }
     },
     exportExcel() {
-      this.$download('system/menu/excel', {
+      this.$download('menu/excel', {
         menuName: this.menuName
       }, `menu_${new Date().getTime()}.xlsx`)
     },
@@ -194,7 +194,7 @@ export default {
           this.buttonLoading = true
           this.menu.createTime = this.menu.modifyTime = null
           if (this.menu.menuId) {
-            this.$put('system/menu', { ...this.menu }).then(() => {
+            this.$put('menu', { ...this.menu }).then(() => {
               this.buttonLoading = false
               this.$message({
                 message: this.$t('tips.updateSuccess'),
@@ -203,7 +203,7 @@ export default {
               this.reset()
             })
           } else {
-            this.$post('system/menu', { ...this.menu }).then(() => {
+            this.$post('menu', { ...this.menu }).then(() => {
               this.buttonLoading = false
               this.$message({
                 message: this.$t('tips.createSuccess'),
@@ -246,7 +246,7 @@ export default {
           type: 'warning'
         }).then(() => {
           this.menu.menuIds = checked.join(',')
-          this.$delete(`system/menu/${this.menu.menuIds}`).then(() => {
+          this.$delete(`menu/${this.menu.menuIds}`).then(() => {
             this.$message({
               message: this.$t('tips.deleteSuccess'),
               type: 'success'

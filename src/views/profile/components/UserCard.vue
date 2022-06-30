@@ -120,14 +120,14 @@ export default {
     },
     bind(name) {
       this.oauthType = name
-      const url = `${this.socialLoginUrl}/${name}/bind`
+      const url = `${this.socialLoginUrl}/bind`
       window.open(url, 'newWindow', `height=${this.page.height}, width=${this.page.width}, top=10%, left=10%, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no`)
       window.addEventListener('message', this.resolveBindResult, false)
     },
     resolveBindResult(e) {
       const data = e.data.data
       data.token = null
-      this.$post('auth/social/bind', {
+      this.$post('/social/bind', {
         ...data,
         bindUsername: this.user.username
       }).then((r) => {
