@@ -1,7 +1,7 @@
 {
   "name": "febs-cloud-web",
   "version": "4.2.1",
-  "description": "febs cloud微服务权限系统前端",
+  "description": "Finance系统前端",
   "author": "MrBird",
   "license": "Apache 2.0",
   "scripts": {
