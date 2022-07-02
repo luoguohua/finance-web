@@ -142,7 +142,7 @@
         </el-form>
       </div>
       <div class="login_page_foot">
-        <div class="copyright">&copy; {{ curYear }} <a target="_blank" href="https://mrbird.cc">MrBird</a> - FEBS</div>
+        <div class="copyright">&copy; {{ curYear }} <a target="_blank" href="https://mrbird.cc">MrBird</a> - FINANCE</div>
       </div>
     </div>
   </div>
@@ -278,6 +278,7 @@ export default {
       } else if (data.message === 'social_login_success') {
         that.saveLoginData(data.data)
         that.getUserDetailInfo()
+        that.loginSuccessCallback()
       } else {
         // do nothing
       }
@@ -300,6 +301,7 @@ export default {
           const data = r.data.data
           this.saveLoginData(data)
           this.getUserDetailInfo()
+          this.loginSuccessCallback()
         }).catch((error) => {
           console.error(error)
           that.loading = false
@@ -347,6 +349,7 @@ export default {
           const data = r.data
           this.saveLoginData(data)
           this.getUserDetailInfo()
+          this.loginSuccessCallback()
         }).catch((error) => {
           console.error(error)
           that.loading = false
@@ -378,6 +381,9 @@ export default {
         console.error(error)
         this.loading = false
       })
+    },
+    loginSuccessCallback() {
+      this.$get('user/success').catch((e) => { console.log(e) })
     }
   }
 }

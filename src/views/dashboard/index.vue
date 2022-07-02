@@ -119,43 +119,43 @@ export default {
     return {
       server: [{
         id: 1,
-        name: 'FEBS-Auth',
+        name: 'FINANCE-Auth',
         port: '8101',
         description: '微服务认证服务器'
       },
       {
         id: 2,
-        name: 'FEBS-Gateway',
+        name: 'FINANCE-Gateway',
         port: '8301',
         description: '微服务网关'
       },
       {
         id: 3,
-        name: 'FEBS-Server-System',
+        name: 'FINANCE-Server-System',
         port: '8201',
         description: '微服务子系统，系统模块'
       },
       {
         id: 4,
-        name: 'FEBS-Server-Test',
+        name: 'FINANCE-Server-Test',
         port: '8202',
         description: '微服务子系统，Demo模块'
       },
       {
         id: 5,
-        name: 'FEBS-Server-Generator',
+        name: 'FINANCE-Server-Generator',
         port: '8203',
         description: '微服务子系统，代码生成模块'
       },
       {
         id: 6,
-        name: 'FEBS-Server-Job',
+        name: 'FINANCE-Server-Job',
         port: '8204',
         description: '微服务子系统，任务调度模块'
       },
       {
         id: 7,
-        name: 'FEBS-TX-Manager',
+        name: 'FINANCE-TX-Manager',
         port: '8501',
         description: '分布式事务控制中心'
       }

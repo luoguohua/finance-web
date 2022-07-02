@@ -8,7 +8,7 @@
         <tags-view v-if="needTagsView" />
       </div>
       <app-main />
-      <div class="footer">© {{ curYear }} <a target="_blank" href="https://mrbird.cc">MrBird</a> - FEBS</div>
+      <div class="footer">© {{ curYear }} <a target="_blank" href="https://luoguohua.github.io/">LuoGuoHua</a> - FINANCE</div>
       <right-panel v-if="showSettings">
         <settings />
       </right-panel>

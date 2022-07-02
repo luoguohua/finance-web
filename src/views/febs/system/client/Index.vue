@@ -164,7 +164,7 @@ export default {
       this.dialog.type = 'edit'
     },
     unlock(row) {
-      this.$get(`auth/client/secret/${row.clientId}`).then((r) => {
+      this.$get(`client/secret/${row.clientId}`).then((r) => {
         this.$message({
           showClose: true,
           message: this.$t('tips.clientOriginSecret') + r.data.data,
@@ -201,7 +201,7 @@ export default {
     },
     delete(clientIds) {
       this.loading = true
-      this.$delete(`auth/client`, { clientIds }).then(() => {
+      this.$delete(`client`, { clientIds }).then(() => {
         this.$message({
           message: this.$t('tips.deleteSuccess'),
           type: 'success'
@@ -225,7 +225,7 @@ export default {
       params.pageSize = this.pagination.size
       params.pageNum = this.pagination.num
       this.loading = true
-      this.$get('auth/client', {
+      this.$get('client', {
         ...params
       }).then((r) => {
         const data = r.data.data

@@ -84,7 +84,7 @@ export default {
           { min: 3, max: 20, message: this.$t('rules.range3to20'), trigger: 'blur' },
           { validator: (rule, value, callback) => {
             if (this.type === 'add') {
-              this.$get(`auth/client/check/${value}`).then((r) => {
+              this.$get(`client/check/${value}`).then((r) => {
                 if (!r.data) {
                   callback(this.$t('rules.clientIdExist'))
                 } else {
@@ -206,7 +206,7 @@ export default {
           if (this.type === 'add') {
             // create
             this.client.authorizedGrantTypes = this.client.authorizedGrantTypes.join(',')
-            this.$post('auth/client', { ...this.client }).then(() => {
+            this.$post('client', { ...this.client }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({
@@ -218,7 +218,7 @@ export default {
           } else {
             // update
             this.client.authorizedGrantTypes = this.client.authorizedGrantTypes.join(',')
-            this.$put('auth/client', { ...this.client }).then(() => {
+            this.$put('client', { ...this.client }).then(() => {
               this.buttonLoading = false
               this.isVisible = false
               this.$message({
