@@ -107,7 +107,7 @@ export default {
       return require(`@/assets/logo/${logo}`)
     },
     findUserConnections() {
-      this.$get(`auth/social/connections/${this.user.username}`).then((r) => {
+      this.$get(`social/connections/${this.user.username}`).then((r) => {
         const data = r.data.data
         data.forEach(d => {
           this.logo.forEach(l => {
@@ -148,7 +148,7 @@ export default {
         cancelButtonText: this.$t('common.cancel'),
         type: 'warning'
       }).then(() => {
-        this.$delete('auth/social/unbind', {
+        this.$delete('social/unbind', {
           bindUsername: this.user.username,
           oauthType: name
         }).then(() => {

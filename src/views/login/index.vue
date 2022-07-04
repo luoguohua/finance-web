@@ -154,6 +154,7 @@ import db from '@/utils/localstorage'
 import { randomNum } from '@/utils'
 import axios from 'axios'
 import { socialLoginUrl } from '@/settings'
+import md5 from 'md5'
 
 export default {
   name: 'Login',
@@ -342,6 +343,7 @@ export default {
       if (username_c && password_c && code_c) {
         this.loading = true
         const that = this
+        that.loginForm.password = md5(that.loginForm.password)
         this.$login('/oauth/token', {
           ...that.loginForm,
           key: this.randomId

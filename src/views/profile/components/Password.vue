@@ -15,6 +15,7 @@
   </el-form>
 </template>
 <script>
+import md5 from 'md5'
 export default {
   data() {
     return {
@@ -29,7 +30,7 @@ export default {
           { required: true, message: this.$t('rules.require'), trigger: 'blur' },
           { validator: (rule, value, callback) => {
             this.$get('user/password/check', {
-              password: value
+              password: md5(value)
             }).then((r) => {
               if (r.data) {
                 callback()
@@ -64,7 +65,7 @@ export default {
         if (valid) {
           this.buttonLoading = true
           this.$put('user/password', {
-            password: this.p.newPassword
+            password: md5(this.p.newPassword)
           }).then(() => {
             this.buttonLoading = false
             this.$message({
